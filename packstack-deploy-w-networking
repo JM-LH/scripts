@@ -1,5 +1,8 @@
 #!/bin/bash 
 
+#enable verbose mode
+set -v
+
 # Preparing Networking
 $ systemctl disable firewalld
 $ systemctl stop firewalld
