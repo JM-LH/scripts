@@ -1,0 +1,22 @@
+#!/bin/bash 
+
+# Preparing Networking
+$ systemctl disable firewalld
+$ systemctl stop firewalld
+$ systemctl disable NetworkManager
+$ systemctl stop NetworkManager
+$ systemctl enable network
+$ systemctl start network
+
+# downloading and installing OpenStack Pike 
+$ yum install -y centos-release-openstack-pike
+
+$ yum-config-manager --enable openstack-pike
+
+$ yum update -y
+$ yum install -y openstack-packstack
+
+
+#Launching RDO
+
+$ packstack --allinone --provision-demo=n --os-neutron-ovs-bridge-mappings=extnet:br-ex --os-neutron-ovs-bridge-interfaces=br-ex:eth0 --os-neutron-ml2-type-drivers=vxlan,flat
